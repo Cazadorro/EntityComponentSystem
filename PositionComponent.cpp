@@ -12,6 +12,8 @@ template <>
 const uint64_t ComponentWithKey<VelocityComponent>::m_key = bit(3);
 template <>
 const uint64_t ComponentWithKey<NameComponent>::m_key = bit(4);
+template <>
+const uint64_t ComponentWithKey<DisplayCharComponent>::m_key = bit(5);
 
 PhysicsNode::PhysicsNode(Entity &entity) {
     m_position = static_cast<PositionComponent *>(entity.getComponent(
@@ -25,4 +27,11 @@ InputNode::InputNode(Entity &entity) {
             InputComponent::getClassKey()));
     m_velocity = static_cast<VelocityComponent *>(entity.getComponent(
             VelocityComponent::getClassKey()));
+}
+
+DisplayNode::DisplayNode(Entity &entity) {
+    m_position = static_cast<PositionComponent *>(entity.getComponent(
+            PositionComponent::getClassKey()));
+    m_displaychar = static_cast<DisplayCharComponent *>(entity.getComponent(
+            DisplayCharComponent::getClassKey()));
 }
