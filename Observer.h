@@ -7,10 +7,12 @@
 #include "ComponentNode.h"
 #include <stdint.h>
 #include <vector>
+#include "ComponentKey.h"
+
 //TODO make observer types singletons and templated
 class Observer{
 public:
-    uint64_t m_key;
+    ComponentKey m_key;
     uint64_t m_reference_count;
     std::vector<ComponentNode*> m_observed_nodes;
     virtual ~Observer(){};

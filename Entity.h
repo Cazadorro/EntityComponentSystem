@@ -9,6 +9,7 @@
 #include "Component.h"
 #include <forward_list>
 #include <vector>
+#include "ComponentKey.h"
 
 class Entity {
     //TODO need to singltonize here?
@@ -17,20 +18,20 @@ public:
     //TODO handle this?
     //static last used id?
     uint64_t m_id;
-    uint64_t m_key = 0;
+    ComponentKey m_lock = 0;
     std::forward_list<Component *> m_components;
     std::forward_list<Component *> m_entities;
 
     void addComponent(Component *component);
 
-    void removeComponent(const uint64_t &componentID);
+    void removeComponent(const ComponentKey &componentID);
 
-    Component *getComponent(const uint64_t &componentIDs);
+    Component *getComponent(const ComponentKey &componentIDs);
 
-    bool doesKeyFit(uint64_t key) const;
+    bool doesKeyFit(const ComponentKey& key) const;
     virtual ~Entity(){};
 protected:
-    std::forward_list<Component *>::iterator findComponent(const uint64_t &
+    std::forward_list<Component *>::iterator findComponent(const ComponentKey &
     componentID);
 };
 

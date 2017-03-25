@@ -12,9 +12,7 @@
 #include "Entity.h"
 #include <iostream>
 
-constexpr uint64_t bit(const uint64_t n) {
-    return static_cast<uint64_t>(1) << (n);
-}
+
 
 class InputComponent : public ComponentWithKey<InputComponent> {
 public:
@@ -77,7 +75,7 @@ public:
 
     PhysicsNode(Entity &entity);
 
-    static uint64_t getKey() {
+    static ComponentKey getKey() {
         return PositionComponent::getClassKey() |
                VelocityComponent::getClassKey();
     }
@@ -92,7 +90,7 @@ public:
 
     InputNode(Entity &entity);
 
-    static uint64_t getKey() {
+    static ComponentKey getKey() {
         return InputComponent::getClassKey() | VelocityComponent::getClassKey();
     }
 
@@ -106,7 +104,7 @@ public:
 
     DisplayNode(Entity &entity);
 
-    static uint64_t getKey() {
+    static ComponentKey getKey() {
         return PositionComponent::getClassKey() |
                DisplayCharComponent::getClassKey();
     }

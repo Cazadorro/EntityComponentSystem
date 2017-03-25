@@ -4,16 +4,16 @@
 
 #include "PositionComponent.h"
 
-template <>
-const uint64_t ComponentWithKey<InputComponent>::m_key = bit(1);
-template <>
-const uint64_t ComponentWithKey<PositionComponent>::m_key = bit(2);
-template <>
-const uint64_t ComponentWithKey<VelocityComponent>::m_key = bit(3);
-template <>
-const uint64_t ComponentWithKey<NameComponent>::m_key = bit(4);
-template <>
-const uint64_t ComponentWithKey<DisplayCharComponent>::m_key = bit(5);
+template<>
+const ComponentKey ComponentWithKey<InputComponent>::m_key = ONEHOT(0);
+template<>
+const ComponentKey ComponentWithKey<PositionComponent>::m_key = ONEHOT(1);
+template<>
+const ComponentKey ComponentWithKey<VelocityComponent>::m_key = ONEHOT(2);
+template<>
+const ComponentKey ComponentWithKey<NameComponent>::m_key = ONEHOT(3);
+template<>
+const ComponentKey ComponentWithKey<DisplayCharComponent>::m_key = ONEHOT(4);
 
 PhysicsNode::PhysicsNode(Entity &entity) {
     m_position = static_cast<PositionComponent *>(entity.getComponent(
