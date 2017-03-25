@@ -70,8 +70,6 @@ int main() {
         system->registerEntity(prop2);
     }
 
-    std::cout << player.m_lock.to_ulong() << std::endl;
-
     while (input_string != "end"){
         std::getline(std::cin,input_string);
         for(auto system: systems){

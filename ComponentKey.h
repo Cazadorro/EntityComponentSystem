@@ -12,9 +12,13 @@ constexpr const uint64_t KEYSIZE = 128;
 
 using ComponentKey = std::bitset<KEYSIZE>;
 
-constexpr auto onehotbit(const uint64_t n) {
-    return 1 << (n);
-}
+//constexpr ComponentKey bit(const uint64_t n) {
+//    return static_cast<ComponentKey>(1) << (n);
+//}
+
+//constexpr ComponentKey bit(const uint64_t n){
+//    return ComponentKey(bit_().replace(n,1,"1"));
+//}
 
 bool canUnlock(const ComponentKey& lock,  const ComponentKey& key);
 
