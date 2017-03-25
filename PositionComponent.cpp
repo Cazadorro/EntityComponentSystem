@@ -5,15 +5,15 @@
 #include "PositionComponent.h"
 
 template<>
-const ComponentKey ComponentWithKey<InputComponent>::m_key = ONEHOT(0);
+const ComponentKey ComponentWithKey<InputComponent>::m_key = onehotbit(0);
 template<>
-const ComponentKey ComponentWithKey<PositionComponent>::m_key = ONEHOT(1);
+const ComponentKey ComponentWithKey<PositionComponent>::m_key = onehotbit(1);
 template<>
-const ComponentKey ComponentWithKey<VelocityComponent>::m_key = ONEHOT(2);
+const ComponentKey ComponentWithKey<VelocityComponent>::m_key = onehotbit(2);
 template<>
-const ComponentKey ComponentWithKey<NameComponent>::m_key = ONEHOT(3);
+const ComponentKey ComponentWithKey<NameComponent>::m_key = onehotbit(3);
 template<>
-const ComponentKey ComponentWithKey<DisplayCharComponent>::m_key = ONEHOT(4);
+const ComponentKey ComponentWithKey<DisplayCharComponent>::m_key = onehotbit(4);
 
 PhysicsNode::PhysicsNode(Entity &entity) {
     m_position = static_cast<PositionComponent *>(entity.getComponent(
