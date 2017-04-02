@@ -11,7 +11,6 @@ void Entity::addComponent(Component *component) {
 
 void Entity::removeComponent(const ComponentKey &componentID) {
     auto iter = findComponent(componentID);
-    (*iter)->kill();
     m_components.erase_after(iter);
 }
 

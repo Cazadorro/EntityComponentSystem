@@ -6,20 +6,12 @@
 #define UNTITLED_COMPONENT_H
 #include <stdint.h>
 #include "ComponentKey.h"
+#include <vector>
 
 class Component {
 public:
-
-    virtual bool isAlive() const {
-        return m_alive;
-    };
-    virtual void kill(){
-        m_alive = false;
-    };
     virtual ComponentKey getKey()const = 0;
     virtual ~Component(){};
-protected:
-    bool m_alive;
 };
 
 template<class Derived>
@@ -30,6 +22,14 @@ public:
 protected:
     static const ComponentKey m_key;
 };
+
+//template<class Derived>
+//class ComponentWithPool : public Component{
+//public:
+//
+//protected:
+//    static std::vector<Derived> m_pool;
+//};
 
 
 #endif //UNTITLED_COMPONENT_H
