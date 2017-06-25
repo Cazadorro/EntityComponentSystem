@@ -6,7 +6,11 @@
 #define ENTITYCOMPONENTSYSTEM_COMPONENT_H
 
 
+#include <cstdint>
+
 class Component {
+public:
+    std::uint64_t key();
 
 };
 

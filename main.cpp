@@ -3,7 +3,9 @@
 //
 
 #include "UnitTests.h"
+#include "iostream"
 
 int main(){
+    addSameComponentTest();
     return 0;
 }

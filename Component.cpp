@@ -3,3 +3,7 @@
 //
 
 #include "Component.h"
+
+std::uint64_t Component::key() {
+    return 1;
+}
