@@ -4,10 +4,12 @@
 
 #ifndef ENTITYCOMPONENTSYSTEM_ENTITY_H
 #define ENTITYCOMPONENTSYSTEM_ENTITY_H
-
+#include "Component.h"
 
 class Entity {
 
+public:
+    void addComponent(Component * component);
 };
 
 

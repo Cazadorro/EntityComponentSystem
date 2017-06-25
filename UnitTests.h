@@ -7,6 +7,6 @@
 #include "Entity.h"
 #include "Component.h"
 
-void addComponentTest(Entity* entity, Component* component);
+void addComponentTest(Entity entity, Component* component);
 
 #endif //TESTCOMPONENTSYSTEM_UNITTESTS_H

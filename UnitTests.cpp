@@ -6,6 +6,6 @@
 
 
 
-void addComponentTest(Entity* entity, Component* component){
-
+void addComponentTest(Entity entity, Component* component){
+    entity.addComponent(component);
 }
