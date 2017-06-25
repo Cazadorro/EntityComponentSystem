@@ -7,5 +7,6 @@
 
 int main(){
     addSameComponentTest();
+    addMultiComponentTest();
     return 0;
 }

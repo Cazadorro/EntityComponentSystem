@@ -12,5 +12,7 @@ void addComponentTest(Entity &entity, Component *component);
 
 void addSameComponentTest();
 
+void addMultiComponentTest();
+
 
 #endif //TESTCOMPONENTSYSTEM_UNITTESTS_H

@@ -48,3 +48,7 @@ void addSameComponentTest() {
     assertNumberOfComponents(entity, previous_size);
     assertCount(entity.key(), 1);
 }
+
+void addMultiComponentTest() {
+
+}
