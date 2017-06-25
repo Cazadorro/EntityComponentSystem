@@ -15,11 +15,8 @@ bool SameComponentChecker::operator()(Component *component) {
 }
 
 void Entity::addComponent(Component *component) {
-    if (hasKey(component->key())) {
-        SameComponentChecker isSameComponent(component);
-        auto erase_itr = std::find_if(m_components.begin(), m_components.end(), isSameComponent);
-        assert(erase_itr != m_components.end());
-        m_components.erase(std::find_if(m_components.begin(), m_components.end(), isSameComponent));
+    if (hasComponentKey(component)) {
+        removeComponent(component);
     }
     m_components.push_back(component);
     m_key |= component->key();
@@ -35,6 +32,17 @@ std::size_t Entity::numberOfComponents() {
 
 bool Entity::hasKey(std::uint64_t key) {
     return (m_key & key) != 0;
+}
+
+void Entity::removeComponent(Component *component) {
+    SameComponentChecker isSameComponent(component);
+    auto erase_itr = std::find_if(m_components.begin(), m_components.end(), isSameComponent);
+    assert(erase_itr != m_components.end());
+    m_components.erase(std::find_if(m_components.begin(), m_components.end(), isSameComponent));
+}
+
+bool Entity::hasComponentKey(Component *component) {
+    return hasKey(component->key());
 }
 
 

@@ -9,11 +9,12 @@
 #include <vector>
 
 
-class SameComponentChecker{
+class SameComponentChecker {
     std::uint64_t m_key = 0;
 public:
-    SameComponentChecker(Component * component);
-    bool operator ()(Component * component);
+    SameComponentChecker(Component *component);
+
+    bool operator()(Component *component);
 
 };
 
@@ -23,6 +24,10 @@ class Entity {
 public:
     void addComponent(Component *component);
 
+    void removeComponent(Component *component);
+
+    bool hasComponentKey(Component *component);
+.
     std::uint64_t key();
 
     bool hasKey(std::uint64_t key);
