@@ -30,7 +30,7 @@ std::size_t Entity::numberOfComponents() const {
     return m_components.size();
 }
 
-bool Entity::hasKey(std::uint64_t key) const {
+bool Entity::hasKey(const uint64_t key) const {
     return (m_key & key) != 0;
 }
 

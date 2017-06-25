@@ -30,7 +30,7 @@ public:
 
     std::uint64_t key() const;
 
-    bool hasKey(std::uint64_t key)const;
+    bool hasKey(const uint64_t key)const;
 
     std::size_t numberOfComponents()const;
 };
