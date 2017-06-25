@@ -14,7 +14,7 @@ class SameComponentChecker {
 public:
     SameComponentChecker(Component *component);
 
-    bool operator()(Component *component);
+    bool operator()(Component *component) const;
 
 };
 
@@ -26,13 +26,13 @@ public:
 
     void removeComponent(Component *component);
 
-    bool hasComponentKey(Component *component);
-.
-    std::uint64_t key();
+    bool hasComponentKey(Component *component) const;
 
-    bool hasKey(std::uint64_t key);
+    std::uint64_t key() const;
 
-    std::size_t numberOfComponents();
+    bool hasKey(std::uint64_t key)const;
+
+    std::size_t numberOfComponents()const;
 };
 
 

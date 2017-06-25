@@ -10,7 +10,7 @@
 
 class Component {
 public:
-    std::uint64_t key();
+    std::uint64_t key()const;
 
 };
 

@@ -4,6 +4,6 @@
 
 #include "Component.h"
 
-std::uint64_t Component::key() {
+std::uint64_t Component::key() const{
     return 1;
 }
