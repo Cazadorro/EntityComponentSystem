@@ -44,6 +44,23 @@ void assertNumberOfNodes(const Observer &observer, const std::size_t size) {
     ASSERT_WITH_MSG(observer.numberOfEntities() == size, assert_failure_message.c_str());
 }
 
+void assertGameHasObserver(const Game &game, const Observer *observer) {
+    std::string assert_failure_message = "Error, Game does not contain observer key " + std::to_string(observer->key());
+    ASSERT_WITH_MSG(game.hasKey(observer->key()), assert_failure_message.c_str());
+}
+
+void assertGameObserverLength(const Game &game, const std::size_t size) {
+    std::string assert_failure_message =
+            "Error, number of entries " + std::to_string(game.numberOfObservers()) + " != " + std::to_string(size);
+    ASSERT_WITH_MSG(game.numberOfObservers() == size, assert_failure_message.c_str());
+}
+
+void assertGameHasNEntities(const Game &game, const std::size_t size) {
+    std::string assert_failure_message =
+            "Error, number of entities " + std::to_string(game.numberOfEntities()) + " != " + std::to_string(size);
+    ASSERT_WITH_MSG(game.numberOfEntities() == size, assert_failure_message.c_str());
+}
+
 void addComponentTest(Entity &entity, Component *component) {
     entity.addComponent(component);
     assertContainsKey(entity, component);
@@ -136,7 +153,7 @@ void initEntityWithComponents() {
     std::cerr << "Deal have not dealt with deletion within entity" << std::endl;
 }
 
-void observerListTest() {
+void gameobserverListTest() {
     NodeObserver<NamePositionNode> o1;
     NodeObserver<PositionHealthNode> o2;
     NodeObserver<HealthNameNode> o3;
@@ -147,9 +164,41 @@ void observerListTest() {
     game.addObserver(&o2);
     game.addObserver(&o3);
 
-    std::cerr << "Deal have not dealt with deletion within game for observers" << std::endl;
-    // game has 3 observers
-    // game has key for o1, o2, and o3
-    // game has 3 total counts
+    assertGameHasObserver(game, &o1);
+    assertGameHasObserver(game, &o2);
+    assertGameHasObserver(game, &o3);
+    assertGameObserverLength(game, 3);
 
+    std::cerr << "Deal have not dealt with deletion within game for m_observers" << std::endl;
+}
+
+void gameEntityAddRemoveTest() {
+
+    PositionComponent *p1 = new PositionComponent();
+    PositionComponent *p2 = new PositionComponent();
+    PositionComponent *p3 = new PositionComponent();
+    HealthComponent *h1 = new HealthComponent();
+    HealthComponent *h2 = new HealthComponent();
+    HealthComponent *h3 = new HealthComponent();
+    NameComponent *n1 = new NameComponent();
+    NameComponent *n2 = new NameComponent();
+    NameComponent *n3 = new NameComponent();
+
+    Entity e1({p1, h1, n1});
+    Entity e2({p2, h2, n2});
+    Entity e3({p3, h3, n3});
+
+    Game game;
+
+    game.addEntity(e1);
+    game.addEntity(e2);
+    game.addEntity(e3);
+
+    assertGameHasNEntities(game, 3);
+
+    game.removeEntity(e1);
+    game.removeEntity(e2);
+    game.removeEntity(e3);
+
+    assertGameHasNEntities(game, 0);
 }

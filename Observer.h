@@ -21,10 +21,10 @@ public:
     virtual std::uint64_t key() const = 0;
 };
 
-class SameEntityChecker {
+class SameNodeChecker {
     Entity const *m_entity;
 public:
-    SameEntityChecker(const Entity &entity);
+    SameNodeChecker(const Entity &entity);
 
     bool operator()(const Node &node) const;
 };
@@ -43,7 +43,7 @@ public:
     }
 
     void remove(const Entity &entity) {
-        SameEntityChecker isSameEntity(entity);
+        SameNodeChecker isSameEntity(entity);
         auto erase_itr = std::find_if(m_nodes.begin(), m_nodes.end(), isSameEntity);
         BOOST_ASSERT_MSG(erase_itr != m_nodes.end(), "at end!");
         m_nodes.erase(erase_itr);

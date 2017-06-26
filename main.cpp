@@ -11,6 +11,7 @@ int main() {
     observerAddBlankTest();
     observerAddMultipleTest();
     initEntityWithComponents();
-
+    gameobserverListTest();
+    gameEntityAddRemoveTest();
     return 0;
 }

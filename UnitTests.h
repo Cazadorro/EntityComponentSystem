@@ -20,8 +20,9 @@ void observerAddMultipleTest();
 
 void initEntityWithComponents();
 
-void observerListTest();
+void gameobserverListTest();
 
+void gameEntityAddRemoveTest();
 
 
 #endif //TESTCOMPONENTSYSTEM_UNITTESTS_H

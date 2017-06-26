@@ -4,10 +4,10 @@
 
 #include "Observer.h"
 
-SameEntityChecker::SameEntityChecker(const Entity &entity) : m_entity(&entity) {
+SameNodeChecker::SameNodeChecker(const Entity &entity) : m_entity(&entity) {
 
 }
 
-bool SameEntityChecker::operator()(const Node &node) const {
+bool SameNodeChecker::operator()(const Node &node) const {
     return m_entity == node.entity();
 }
