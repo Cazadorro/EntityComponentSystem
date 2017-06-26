@@ -5,7 +5,7 @@
 #ifndef ENTITYCOMPONENTSYSTEM_COMPONENT_H
 #define ENTITYCOMPONENTSYSTEM_COMPONENT_H
 
-
+#include "key.h"
 #include <cstdint>
 
 class Component {
@@ -24,8 +24,5 @@ protected:
     static const std::uint64_t m_key;
 };
 
-constexpr std::uint64_t bit(const std::uint64_t n) {
-    return static_cast<std::uint64_t>(1) << (n);
-}
 
 #endif //ENTITYCOMPONENTSYSTEM_COMPONENT_H

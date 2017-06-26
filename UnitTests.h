@@ -14,5 +14,10 @@ void addSameComponentTest();
 
 void addMultiComponentTest();
 
+void observerAddBlankTest();
+
+void observerAddMultipleTest();
+
+void initEntityWithComponents();
 
 #endif //TESTCOMPONENTSYSTEM_UNITTESTS_H

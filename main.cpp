@@ -5,8 +5,12 @@
 #include "UnitTests.h"
 #include "iostream"
 
-int main(){
+int main() {
     addSameComponentTest();
     addMultiComponentTest();
+    observerAddBlankTest();
+    observerAddMultipleTest();
+    initEntityWithComponents();
+
     return 0;
 }
