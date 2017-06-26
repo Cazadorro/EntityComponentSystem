@@ -13,7 +13,7 @@ class PositionComponent : public StaticKeyComponent<PositionComponent> {
     int64_t m_z;
 
 public:
-    PositionComponent(const int64_t x = 0, const int64_t y = 0, const int64_t z = 0) : m_x(x), m_y(y), m_z(z) {};
+    PositionComponent(const int64_t x = 0, const int64_t y = 0, const int64_t z = 0);
 };
 
 

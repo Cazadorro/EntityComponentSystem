@@ -7,3 +7,5 @@
 
 template <>
 const uint64_t StaticKeyComponent<HealthComponent>::m_key = bit(2);
+
+HealthComponent::HealthComponent(const std::uint64_t health) : m_health(health) {};

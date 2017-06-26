@@ -11,7 +11,7 @@ class HealthComponent : public StaticKeyComponent<HealthComponent> {
 public:
     std::uint64_t m_health;
 
-    HealthComponent(const std::uint64_t health = 0) : m_health(health) {};
+    HealthComponent(const std::uint64_t health = 0);
 
 };
 

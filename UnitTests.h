@@ -20,4 +20,8 @@ void observerAddMultipleTest();
 
 void initEntityWithComponents();
 
+void observerListTest();
+
+
+
 #endif //TESTCOMPONENTSYSTEM_UNITTESTS_H

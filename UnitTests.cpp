@@ -11,7 +11,10 @@
 #include "boost/assert.hpp"
 #include "testingutility.h"
 #include "PositionHealthNode.h"
+#include "NamePositionNode.h"
+#include "HealthNameNode.h"
 #include "Observer.h"
+#include "Game.h"
 
 void assertCount(const std::uint64_t key, const size_t count) {
     size_t actual_count = std::bitset<64>(key).count();
@@ -130,7 +133,23 @@ void initEntityWithComponents() {
     observer.registerNew(e1);
     assertNumberOfNodes(observer, 1);
     delete p1, h1;
-
+    std::cerr << "Deal have not dealt with deletion within entity" << std::endl;
 }
 
+void observerListTest() {
+    NodeObserver<NamePositionNode> o1;
+    NodeObserver<PositionHealthNode> o2;
+    NodeObserver<HealthNameNode> o3;
 
+    Game game;
+
+    game.addObserver(&o1);
+    game.addObserver(&o2);
+    game.addObserver(&o3);
+
+    std::cerr << "Deal have not dealt with deletion within game for observers" << std::endl;
+    // game has 3 observers
+    // game has key for o1, o2, and o3
+    // game has 3 total counts
+
+}
