@@ -32,10 +32,16 @@ std::size_t Game::numberOfEntities() const {
 
 void Game::addEntity(Entity &entity) {
     m_entities.push_back(&entity);
+    for (auto &observer: m_observers) {
+        observer.second->registerNew(entity);
+    }
 }
 
 void Game::removeEntity(Entity &entity) {
     auto entity_itr = getComponentIterator(entity);
+    for (auto &observer: m_observers) {
+        observer.second->unregister(entity);
+    }
     if (entity_itr != m_entities.end()) {
         m_entities.erase(entity_itr);
     }

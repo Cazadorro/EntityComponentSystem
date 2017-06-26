@@ -13,5 +13,6 @@ int main() {
     initEntityWithComponents();
     gameobserverListTest();
     gameEntityAddRemoveTest();
+    gameEntityAddRemoveToObserverTest();
     return 0;
 }

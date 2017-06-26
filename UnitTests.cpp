@@ -61,6 +61,11 @@ void assertGameHasNEntities(const Game &game, const std::size_t size) {
     ASSERT_WITH_MSG(game.numberOfEntities() == size, assert_failure_message.c_str());
 }
 
+void assertObserverHasEntity(const Observer &observer, const Entity &entity) {
+    std::string assert_failure_message = "Error, observer doesn't have entity";
+    ASSERT_WITH_MSG(observer.hasEntity(entity), assert_failure_message.c_str());
+}
+
 void addComponentTest(Entity &entity, Component *component) {
     entity.addComponent(component);
     assertContainsKey(entity, component);
@@ -201,4 +206,73 @@ void gameEntityAddRemoveTest() {
     game.removeEntity(e3);
 
     assertGameHasNEntities(game, 0);
+
+    delete p1, p2, p3, h1, h2, h3, n1, n2, n3;
+}
+
+void gameEntityAddRemoveToObserverTest() {
+    PositionComponent *p1 = new PositionComponent();
+    PositionComponent *p2 = new PositionComponent();
+    PositionComponent *p3 = new PositionComponent();
+    HealthComponent *h1 = new HealthComponent();
+    HealthComponent *h2 = new HealthComponent();
+    HealthComponent *h3 = new HealthComponent();
+    NameComponent *n1 = new NameComponent();
+    NameComponent *n2 = new NameComponent();
+    NameComponent *n3 = new NameComponent();
+    Entity e1({p1, h1, n1});
+    Entity e2({p2, n2});
+    Entity e3({h3, n3});
+    Game game;
+    NodeObserver<NamePositionNode> o1;
+    NodeObserver<PositionHealthNode> o2;
+    NodeObserver<HealthNameNode> o3;
+
+    game.addObserver(&o1);
+    game.addObserver(&o2);
+    game.addObserver(&o3);
+
+    game.addEntity(e1);
+    game.addEntity(e2);
+    game.addEntity(e3);
+
+    assertNumberOfNodes(o1, 2);
+    assertObserverHasEntity(o1, e1);
+    assertObserverHasEntity(o1, e2);
+
+    assertNumberOfNodes(o2, 1);
+    assertObserverHasEntity(o2, e1);
+
+    assertNumberOfNodes(o3, 2);
+    assertObserverHasEntity(o3, e1);
+    assertObserverHasEntity(o3, e3);
+
+    game.removeEntity(e1);
+
+    assertNumberOfNodes(o1, 1);
+    assertObserverHasEntity(o1, e2);
+
+    assertNumberOfNodes(o2, 0);
+
+    assertNumberOfNodes(o3, 1);
+    assertObserverHasEntity(o3, e3);
+
+    game.removeEntity(e2);
+
+    assertNumberOfNodes(o1, 0);
+
+    assertNumberOfNodes(o2, 0);
+
+    assertNumberOfNodes(o3, 1);
+    assertObserverHasEntity(o3, e3);
+
+    game.removeEntity(e3);
+
+    assertNumberOfNodes(o1, 0);
+
+    assertNumberOfNodes(o2, 0);
+
+    assertNumberOfNodes(o3, 0);
+
+    delete p1, p2, p3, h1, h2, h3, n1, n2, n3;
 }

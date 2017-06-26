@@ -33,7 +33,7 @@ std::size_t Entity::numberOfComponents() const {
 }
 
 bool Entity::hasKey(const uint64_t key) const {
-    return (m_key & key) != 0;
+    return (key & m_key) == key;
 }
 
 void Entity::removeComponent(Component *component) {

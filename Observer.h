@@ -18,6 +18,12 @@ public:
 
     virtual void registerNew(Entity &entity) = 0;
 
+    virtual void unregister(const Entity &entity) = 0;
+
+    virtual bool hasEntity(const Entity &entity) const = 0;
+
+    virtual bool keyMatchesEntity(const Entity &entity) const = 0;
+
     virtual std::uint64_t key() const = 0;
 };
 
@@ -32,6 +38,17 @@ public:
 template<class Node_T>
 class NodeObserver : public Observer {
     std::vector<Node_T> m_nodes;
+
+    typename std::vector<Node_T>::iterator getNodeIterator(const Entity &entity) {
+        SameNodeChecker isSameEntity(entity);
+        return std::find_if(m_nodes.begin(), m_nodes.end(), isSameEntity);
+    }
+
+//    typename std::vector<Node_T>::iterator getNodeIterator(const Entity &entity) const {
+//        SameNodeChecker isSameEntity(entity);
+//        return std::find_if(m_nodes.begin(), m_nodes.end(), isSameEntity);
+//    }
+
 public:
 
     typename std::vector<Node_T>::iterator begin() {
@@ -43,8 +60,7 @@ public:
     }
 
     void remove(const Entity &entity) {
-        SameNodeChecker isSameEntity(entity);
-        auto erase_itr = std::find_if(m_nodes.begin(), m_nodes.end(), isSameEntity);
+        auto erase_itr = getNodeIterator(entity);
         BOOST_ASSERT_MSG(erase_itr != m_nodes.end(), "at end!");
         m_nodes.erase(erase_itr);
     }
@@ -56,6 +72,22 @@ public:
     void registerNew(Entity &entity) {
         if (entity.hasKey(Node_T::classkey())) {
             m_nodes.push_back(Node_T(entity));
+        }
+    }
+
+    bool hasEntity(const Entity &entity) const {
+        SameNodeChecker isSameEntity(entity);
+        return std::find_if(m_nodes.begin(), m_nodes.end(), isSameEntity) != m_nodes.end();
+    }
+
+    bool keyMatchesEntity(const Entity &entity) const {
+        return entity.hasKey(Node_T::classkey());
+    }
+
+    //TODO may need to increase performance of entity search for removal
+    void unregister(const Entity &entity) {
+        if (keyMatchesEntity(entity)) {
+            remove(entity);
         }
     }
 
