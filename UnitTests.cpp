@@ -15,6 +15,8 @@
 #include "HealthNameNode.h"
 #include "Observer.h"
 #include "Game.h"
+#include "PrintNameSystem.h"
+#include "System.h"
 
 void assertCount(const std::uint64_t key, const size_t count) {
     size_t actual_count = std::bitset<64>(key).count();
@@ -49,7 +51,7 @@ void assertGameHasObserver(const Game &game, const Observer *observer) {
     ASSERT_WITH_MSG(game.hasKey(observer->key()), assert_failure_message.c_str());
 }
 
-void assertGameObserverLength(const Game &game, const std::size_t size) {
+void assertObserverNumber(const Game &game, const std::size_t size) {
     std::string assert_failure_message =
             "Error, number of entries " + std::to_string(game.numberOfObservers()) + " != " + std::to_string(size);
     ASSERT_WITH_MSG(game.numberOfObservers() == size, assert_failure_message.c_str());
@@ -64,6 +66,12 @@ void assertGameHasNEntities(const Game &game, const std::size_t size) {
 void assertObserverHasEntity(const Observer &observer, const Entity &entity) {
     std::string assert_failure_message = "Error, observer doesn't have entity";
     ASSERT_WITH_MSG(observer.hasEntity(entity), assert_failure_message.c_str());
+}
+
+void assertSystemNumber(const Game &game, const std::size_t size) {
+    std::string assert_failure_message =
+            "Error, number of system " + std::to_string(game.numberOfObservers()) + " != " + std::to_string(size);
+    ASSERT_WITH_MSG(game.numberOfSystems(), assert_failure_message.c_str());
 }
 
 void addComponentTest(Entity &entity, Component *component) {
@@ -172,7 +180,7 @@ void gameobserverListTest() {
     assertGameHasObserver(game, &o1);
     assertGameHasObserver(game, &o2);
     assertGameHasObserver(game, &o3);
-    assertGameObserverLength(game, 3);
+    assertObserverNumber(game, 3);
 
     std::cerr << "Deal have not dealt with deletion within game for m_observers" << std::endl;
 }
@@ -275,4 +283,39 @@ void gameEntityAddRemoveToObserverTest() {
     assertNumberOfNodes(o3, 0);
 
     delete p1, p2, p3, h1, h2, h3, n1, n2, n3;
+}
+
+void gameAddSystemTest() {
+
+    NameComponent *n1 = new NameComponent();
+    Entity e1;
+    e1.addComponent(n1);
+
+    System *system1 = new PrintNameSystem();
+
+    Game game;
+    game.addSystem(system1);
+
+    assertSystemNumber(game, 1);
+    assertObserverNumber(game, 1);
+
+    game.addEntity(e1);
+    game.runOnce();
+
+
+}
+
+void gameSystemModifyTest() {
+//    System *system1 = new PrintNameSystem();
+//    System *system2 = new MoveNorthSystem();
+//    System *system3 = new CombatSystem();
+//
+//    Game game;
+//    game.addSystem(system1);
+//    game.addSystem(system2);
+//    game.addSystem(system3);
+//
+//    assertSystemNumber(game, 3);
+//    assertObserverNumber(game, 3);
+
 }

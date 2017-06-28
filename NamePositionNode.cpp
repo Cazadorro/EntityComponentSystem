@@ -9,6 +9,6 @@ const uint64_t StaticKeyNode<NamePositionNode>::m_key = NameComponent::classkey(
 
 NamePositionNode::NamePositionNode(Entity &entity)
         : StaticKeyNode(entity) {
-    m_name = entity.getComponent<NameComponent>();
-    m_position = entity.getComponent<PositionComponent>();
+    m_name_component = entity.getComponent<NameComponent>();
+    m_position_component = entity.getComponent<PositionComponent>();
 }

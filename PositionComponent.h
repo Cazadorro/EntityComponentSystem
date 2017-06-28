@@ -8,11 +8,11 @@
 #include "Component.h"
 
 class PositionComponent : public StaticKeyComponent<PositionComponent> {
+
+public:
     int64_t m_x;
     int64_t m_y;
     int64_t m_z;
-
-public:
     PositionComponent(const int64_t x = 0, const int64_t y = 0, const int64_t z = 0);
 };
 

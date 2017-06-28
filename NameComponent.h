@@ -10,9 +10,10 @@
 #include "key.h"
 
 class NameComponent : public StaticKeyComponent<NameComponent>{
-    std::string m_name = "";
 public:
+    std::string m_name = "";
     NameComponent(const std::string name = "");
+
 };
 
 

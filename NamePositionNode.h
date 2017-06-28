@@ -10,8 +10,8 @@
 #include "PositionComponent.h"
 
 class NamePositionNode : public StaticKeyNode<NamePositionNode> {
-    NameComponent *m_name;
-    PositionComponent *m_position;
+    NameComponent *m_name_component;
+    PositionComponent *m_position_component;
 public:
     NamePositionNode(Entity& entity);
 

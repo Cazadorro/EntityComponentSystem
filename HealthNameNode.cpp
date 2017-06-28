@@ -9,7 +9,7 @@ const uint64_t StaticKeyNode<HealthNameNode>::m_key = HealthComponent::classkey(
 
 HealthNameNode::HealthNameNode(Entity &entity)
         : StaticKeyNode(entity) {
-    m_health = entity.getComponent<HealthComponent>();
-    m_name = entity.getComponent<NameComponent>();
+    m_health_component = entity.getComponent<HealthComponent>();
+    m_name_component = entity.getComponent<NameComponent>();
 }
 

@@ -44,11 +44,6 @@ class NodeObserver : public Observer {
         return std::find_if(m_nodes.begin(), m_nodes.end(), isSameEntity);
     }
 
-//    typename std::vector<Node_T>::iterator getNodeIterator(const Entity &entity) const {
-//        SameNodeChecker isSameEntity(entity);
-//        return std::find_if(m_nodes.begin(), m_nodes.end(), isSameEntity);
-//    }
-
 public:
 
     typename std::vector<Node_T>::iterator begin() {
@@ -65,33 +60,33 @@ public:
         m_nodes.erase(erase_itr);
     }
 
-    std::size_t numberOfEntities() const {
+    std::size_t numberOfEntities() const override{
         return m_nodes.size();
     }
 
-    void registerNew(Entity &entity) {
+    void registerNew(Entity &entity) override{
         if (entity.hasKey(Node_T::classkey())) {
             m_nodes.push_back(Node_T(entity));
         }
     }
 
-    bool hasEntity(const Entity &entity) const {
+    bool hasEntity(const Entity &entity) const override{
         SameNodeChecker isSameEntity(entity);
         return std::find_if(m_nodes.begin(), m_nodes.end(), isSameEntity) != m_nodes.end();
     }
 
-    bool keyMatchesEntity(const Entity &entity) const {
+    bool keyMatchesEntity(const Entity &entity) const override{
         return entity.hasKey(Node_T::classkey());
     }
 
     //TODO may need to increase performance of entity search for removal
-    void unregister(const Entity &entity) {
+    void unregister(const Entity &entity) override{
         if (keyMatchesEntity(entity)) {
             remove(entity);
         }
     }
 
-    std::uint64_t key() const { return Node_T::classkey(); };
+    std::uint64_t key() const override{ return Node_T::classkey(); };
 
     static std::uint64_t classkey() { return Node_T::classkey(); };
 

@@ -9,6 +9,6 @@ const uint64_t StaticKeyNode<PositionHealthNode>::m_key = PositionComponent::cla
 
 PositionHealthNode::PositionHealthNode(Entity &entity)
         : StaticKeyNode(entity){
-    m_position = entity.getComponent<PositionComponent>();
-    m_health = entity.getComponent<HealthComponent>();
+    m_position_component = entity.getComponent<PositionComponent>();
+    m_health_component = entity.getComponent<HealthComponent>();
 }

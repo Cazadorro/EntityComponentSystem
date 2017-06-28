@@ -10,8 +10,8 @@
 #include "HealthComponent.h"
 
 class PositionHealthNode : public StaticKeyNode<PositionHealthNode> {
-    PositionComponent *m_position;
-    HealthComponent *m_health;
+    PositionComponent *m_position_component;
+    HealthComponent *m_health_component;
 public:
     PositionHealthNode(Entity &entity);
 

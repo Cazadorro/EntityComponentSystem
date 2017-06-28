@@ -26,5 +26,9 @@ void gameEntityAddRemoveTest();
 
 void gameEntityAddRemoveToObserverTest();
 
+void gameAddSystemTest();
+
+void gameSystemModifyTest();
+
 
 #endif //TESTCOMPONENTSYSTEM_UNITTESTS_H

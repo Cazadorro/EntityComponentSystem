@@ -14,5 +14,7 @@ int main() {
     gameobserverListTest();
     gameEntityAddRemoveTest();
     gameEntityAddRemoveToObserverTest();
+    gameAddSystemTest();
+    gameSystemModifyTest();
     return 0;
 }

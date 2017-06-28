@@ -10,27 +10,21 @@
 #include <cstdint>
 #include <unordered_map>
 #include <vector>
-
-class SameEntityChecker {
-    Entity * m_entity;
-public:
-    SameEntityChecker(Entity *entity);
-
-    bool operator()(Entity *entity) const;
-
-};
+#include "System.h"
 
 class Game {
     std::unordered_map<std::uint64_t, Observer *> m_observers;
     std::vector<Entity *> m_entities;
+    std::vector<System *> m_systems;
 
-    std::vector<Entity *>::iterator getComponentIterator(Entity & entity);
+    std::vector<Entity *>::iterator getEntityIterator(Entity &entity);
+    std::vector<System *>::iterator getSystemIterator(System *system);
 public:
     void addObserver(Observer *observer);
 
-    Observer *find(const std::uint64_t key);
+    Observer *findObserver(const std::uint64_t key);
 
-    const Observer *find(const std::uint64_t key) const;
+    const Observer *findObserver(const std::uint64_t key) const;
 
     std::size_t numberOfObservers() const;
 
@@ -41,6 +35,18 @@ public:
     void addEntity(Entity &entity);
 
     void removeEntity(Entity &entity);
+
+    std::size_t numberOfSystems() const;
+
+    void addSystem(System * system);
+
+    void removeSystem(System * system);
+
+    void removeObserver(Observer * observer);
+
+    void runOnce();
+
+
 };
 
 

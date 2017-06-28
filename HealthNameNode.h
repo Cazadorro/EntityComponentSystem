@@ -11,8 +11,8 @@
 
 
 class HealthNameNode : public StaticKeyNode<HealthNameNode> {
-    HealthComponent *m_health;
-    NameComponent *m_name;
+    HealthComponent *m_health_component;
+    NameComponent *m_name_component;
 
 public:
     HealthNameNode(Entity &entity);

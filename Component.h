@@ -16,7 +16,7 @@ public:
 template<class Derived>
 class StaticKeyComponent : public Component {
 public:
-    std::uint64_t key() const { return m_key; };
+    std::uint64_t key() const override { return m_key; };
 
     static std::uint64_t classkey() { return m_key; };
 
